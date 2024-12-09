@@ -96,6 +96,16 @@
             margin-top: 20px;
             border-radius: 8px;
         }
+
+        .home-message {
+            font-size: 1.5em;
+            color: black;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -103,12 +113,21 @@
     <div class="background-image"></div>
 
     <div class="sidebar">
+        <a href="#" onclick="showSection('home')">HOME</a>
         <a href="#" onclick="showSection('about')">ABOUT ME</a>
         <a href="#" onclick="showSection('contact')">CONTACT ME</a>
         <a href="#" onclick="showSection('agenda')">AGENDA</a>
     </div>
 
     <main>
+        <section id="home" class="section-content">
+            <h1>HOME</h1>
+            <div class="home-message">
+                소재연구소 근무하는 이우영 입니다. <br>
+                개발자 커리어는 없지만 행복을 찾고있습니다.
+            </div>
+        </section>
+
         <section id="about" class="section-content">
             <h1>ABOUT ME</h1>
             <p><strong>이름:</strong> 이우영</p>
@@ -148,14 +167,18 @@
             var activeSection = document.getElementById(sectionId);
             activeSection.classList.add('active');
 
-            if (backgroundVisible) {
-                document.querySelector('.background-image').style.opacity = '0';
+            // Show background image only for the home section
+            if (sectionId === 'home' && backgroundVisible) {
+                document.querySelector('.background-image').style.opacity = '1';
                 backgroundVisible = false;
+            } else if (sectionId !== 'home' && !backgroundVisible) {
+                document.querySelector('.background-image').style.opacity = '0';
+                backgroundVisible = true;
             }
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            showSection('about');
+            showSection('home');
         });
     </script>
 
