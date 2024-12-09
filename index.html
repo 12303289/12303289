@@ -72,12 +72,11 @@
             text-align: center;
         }
 
-        #contact {
+        .section-content {
             display: none;
-            text-align: center;
         }
 
-        #contact:target {
+        .active {
             display: block;
         }
 
@@ -87,44 +86,18 @@
             margin-top: 20px;
             border-radius: 8px;
         }
-
-        #agenda {
-            display: none;
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-
-        #agenda:target {
-            display: block;
-        }
-
-        #about:target {
-            background-image: none;
-            color: black;
-        }
-
-        #contact:target {
-            background-image: none;
-            color: black;
-        }
-
-        #agenda:target {
-            background-image: none;
-            color: black;
-        }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <a href="#about">ABOUT ME</a>
-        <a href="#contact">CONTACT ME</a>
-        <a href="#agenda">AGENDA</a>
+        <a href="#" onclick="showSection('about')">ABOUT ME</a>
+        <a href="#" onclick="showSection('contact')">CONTACT ME</a>
+        <a href="#" onclick="showSection('agenda')">AGENDA</a>
     </div>
 
     <main>
-        <section id="about">
+        <section id="about" class="section-content">
             <h1>ABOUT ME</h1>
             <p><strong>이름:</strong> 이우영</p>
             <p><strong>나이:</strong> 27세</p>
@@ -132,12 +105,12 @@
             <p><strong>priority:</strong> 행복</p>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="section-content">
             <h1>CONTACT ME</h1>
             <img src="KakaoTalk_20241209_215454625.jpg" alt="Contact Image">
         </section>
 
-        <section id="agenda">
+        <section id="agenda" class="section-content">
             <h1>AGENDA</h1>
             <p>우리는 행복한 삶을 꿈꾸며 살아갑니다. 과거의 행복했던 기억은 모여 추억이 되고
             앞으로 살아가는 삶을 나아가게 해주는 원동력이 됩니다.</p>
@@ -150,6 +123,22 @@
             <p>&copy; 2024 이우영. All rights reserved.</p>
         </footer>
     </main>
+
+    <script>
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('.section-content');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            var activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showSection('about');
+        });
+    </script>
 
 </body>
 </html>
